@@ -3,7 +3,7 @@ const mongoose=require('mongoose')
 const cors=require('cors')
 require('dotenv').config()
 const mongoString = process.env.DATABASE_URL;
-
+const port =process.env.PORT || 3000;
 
 //router module
 const userRoutes=require('./routes/user.routes')
@@ -41,7 +41,5 @@ app.use('/api',userRoutes)
 app.use('/api/admin',adminRoutes)
 
 
-app.listen(3000, () => {
-    console.log(`Server Started at ${3000}`)
-})
+app.listen(port,'0.0.0.0')
 
