@@ -29,7 +29,7 @@ const app=express();
 
 app.use(cors({
     credentials:true,
-    "origin": ["https://godope-a-clothing-website.vercel.app","http://localhost:4200"]
+    origin: ["https://godope-a-clothing-website.vercel.app","http://localhost:4200"]
 }))
 
 app.options('*', cors());

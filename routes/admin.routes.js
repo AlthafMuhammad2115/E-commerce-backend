@@ -3,6 +3,8 @@ const router=express.Router()
 const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
 
+const jwt_key=process.env.JWTTOKEN_KEY ;
+
 module.exports=router
 
 // models

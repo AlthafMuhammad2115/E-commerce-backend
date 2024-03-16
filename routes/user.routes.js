@@ -3,7 +3,7 @@ const router =express.Router()
 const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
 require('dotenv').config()
-const jwt_key=process.env.JWTTOKEN_KEY;
+const jwt_key=process.env.JWTTOKEN_KEY ;
 
 const products=require('../model/model')
 const productModel=require('../model/product.model');
@@ -120,8 +120,6 @@ router.post('/cart',async (req,res)=>{
                 cart.products.push({ productId, quantity, name, price, imgUrl });
             }
             cart.subTotal+=price;
-
-
 
         }
         cart = await cart.save();
