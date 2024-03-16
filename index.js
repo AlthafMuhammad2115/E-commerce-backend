@@ -25,11 +25,14 @@ database.once('connected',()=>{
 
 const app=express();
 
+//cors setup
 
 app.use(cors({
     credentials:true,
-    origin:["*"]
+    "origin": ["https://godope-a-clothing-website.vercel.app","http://localhost:4200"]
 }))
+
+app.options('*', cors());
 
 app.use(express.json())
 

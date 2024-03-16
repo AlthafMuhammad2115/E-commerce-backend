@@ -36,10 +36,6 @@ const productSchema=mongoose.Schema({
     trending:{
         required:true,
         type:Boolean
-    },
-    wishlist:{
-        type:Boolean,
-        default:false
     }
 },{
     toJSON:{

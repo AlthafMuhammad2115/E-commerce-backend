@@ -108,7 +108,7 @@ generateTokenResponse=(user)=>{
 router.post('/cart',async (req,res)=>{
     try{
         const {userId,productId, quantity, name, price, imgUrl}=req.body;
-        let cart=await cartModel.findOne({userId})
+        let cart=await cartModel.findOne({userId});
 
         if(cart){
             const cartIndex= cart.products.findIndex(p=>p.productId==productId);
@@ -120,6 +120,8 @@ router.post('/cart',async (req,res)=>{
                 cart.products.push({ productId, quantity, name, price, imgUrl });
             }
             cart.subTotal+=price;
+
+
 
         }
         cart = await cart.save();
@@ -192,5 +194,5 @@ router.delete('/deleteCartAllItem/:userId',async (req,res)=>{
 
 // wishlist starts
 
-
+router.post('/wishlist')
 // wishlist ends
