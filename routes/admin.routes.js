@@ -8,82 +8,8 @@ const jwt_key=process.env.JWTTOKEN_KEY ;
 module.exports=router
 
 // models
-const productModel=require('../model/product.model')
+
 const adminsignupModel=require('../model/adminSignUp.model')
-
-//product starts
-router.post('/setProducts',async (req,res)=>{
-    try{
-        const {name,shortDesc,desc,size,price,imgUrl,stock,category,trending}=req.body
-        const product=await productModel.create({
-            name:name,
-            shortDesc:shortDesc,
-            desc:desc,
-            size:size,
-            price:price,
-            imgUrl:imgUrl,
-            stock:stock,
-            category:category,
-            trending:trending,
-        })
-        res.status(200).send(product)
-    }catch(error){
-        res.status(404).json({message:error.message})
-    }
-
-})
-
-router.patch('/editProducts/:id', async(req,res)=>{
-
-    try{
-        const {name,shortDesc,desc,size,price,imgUrl,stock,category,trending}=req.body;
-        const productId=req.params.id;
-       
-        const product={
-            _id:productId,
-            id:productId,
-            name:name,
-            shortDesc:shortDesc,
-            desc:desc,
-            size:size,
-            price:price,
-            imgUrl:imgUrl,
-            stock:stock,
-            category:category,
-            trending:trending
-        }
-        productModel.updateOne({_id:productId},{$set:product}).then(
-            () => {
-                res.status(201).json({
-                  message: 'Product updated successfully!',
-                });
-              }
-            ).catch(
-              (error) => {
-                res.status(400).json({
-                  message: error.message
-                });
-              }
-            );
-
-    }catch(error){
-        res.status(402).json({message:error.message})
-    }
-    
-})
-
-router.delete('/deleteProducts/:id', async (req,res)=>{
-    try{
-        const productId=req.params.id;
-        await productModel.findOneAndDelete({_id:productId});
-        res.status(202).send('Product deleted successfully!');
-    }catch(error){
-        res.status(402).json({message:error.message})
-    }
-})
-
-//product ends
-
 //admin login starts
 
 router.post('/signup', async (req,res)=>{
