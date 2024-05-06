@@ -91,7 +91,7 @@ router.patch('/deleteAddress/:userId',async (req,res)=>{
     try{
         const userId=req.params.userId;
         const {addressId}=req.body;
-        const userAddress=await addressModel.findOneAndUpdate({userId:userId},{$pull:{address:{_id:addressId}}})
+        const userAddress=await addressModel.findOneAndDelete({userId:userId},{$pull:{address:{_id:addressId}}},{ new: true })
         res.send(userAddress)
     }catch(error){
         res.status(402).json({message:error.message});
