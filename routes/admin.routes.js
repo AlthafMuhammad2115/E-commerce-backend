@@ -26,7 +26,7 @@ router.post('/signup', async (req,res)=>{
 
         const encryptedPassword=bcrypt.hash(password,10)
 
-        const newModel=new signupModel({
+        const newModel=new adminsignupModel({
             username:username,
             email:email.toLowerCase(),
             password:await encryptedPassword

@@ -16,4 +16,4 @@ const adminSignUpSchema=new mongoose.Schema({
     }
 })
 
-module.exports=mongoose.model('admin-signup',adminSignUpSchema)
+module.exports=mongoose.model('adminSignup',adminSignUpSchema)
