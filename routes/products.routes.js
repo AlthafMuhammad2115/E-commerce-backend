@@ -41,19 +41,19 @@ async function uploadFile(file) {
   try {
     const fileStream = fs.createReadStream(file.path);
 
-    const blob = await removeBackground(file.path);
-    const buffer = Buffer.from(await blob.arrayBuffer());
-    const dataURL = `data:image/png;base64,${buffer.toString("base64")}`;
+    // const blob = await removeBackground(file.path);
+    // const buffer = Buffer.from(await blob.arrayBuffer());
+    // const dataURL = `data:image/png;base64,${buffer.toString("base64")}`;
     
-    let filename=file.size.toString()+'-'+file.filename;
-    fs.writeFileSync('./public/images/'+filename, dataURL.split(';base64,').pop(), { encoding: 'base64' });
-    const rmImg=fs.createReadStream('./public/images/'+filename);
+    // let filename=file.size.toString()+'-'+file.filename;
+    // fs.writeFileSync('./public/images/'+filename, dataURL.split(';base64,').pop(), { encoding: 'base64' });
+    // const rmImg=fs.createReadStream('./public/images/'+filename);
     
     const uploadParams = {
 
       ACL: 'private',
       Bucket: bucketName,
-      Body: rmImg,
+      Body: fileStream,
       Key: file.filename,
     };
 
@@ -66,7 +66,7 @@ async function uploadFile(file) {
       console.log(progress);})
     await uploadS3.done();
 
-    await unlinkFile('./public/images/'+filename);
+    // await unlinkFile('./public/images/'+filename);
   } catch (error) {
     console.log(error.message);
   }
