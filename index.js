@@ -12,6 +12,7 @@ const productRoutes=require('./routes/products.routes');
 const addressRoutes=require('./routes/address.routes');
 const cartRoutes=require('./routes/cart.routes');
 const wishlistRoutes=require('./routes/wishlist.routes')
+const orderRoutes=require('./routes/order.routes')
 //db
 
 mongoose.connect(mongoString)
@@ -38,6 +39,7 @@ app.use(cors({
 app.options('*', cors());
 
 app.use(express.json())
+// app.use(express.urlencoded({ extended: true })); // To parse form-data
 
 //routes
 app.use('/api/user',userRoutes)
@@ -46,6 +48,7 @@ app.use('/api/products',productRoutes)
 app.use('/api/address',addressRoutes)
 app.use('/api/cart',cartRoutes)
 app.use('/api/wishlist',wishlistRoutes)
+app.use('/api/orders',orderRoutes)
 
 app.listen(port,()=>{
     console.log(`server started at port ${port}`);

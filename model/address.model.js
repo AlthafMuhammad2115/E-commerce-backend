@@ -23,26 +23,11 @@ const addressSchema=mongoose.Schema({
                 type:String,
                 required:true
             },
-            housename:{
+            address:{
                 type:String,
                 required:true
             },
-            area:{
-                type:String,
-                required:true
-            },
-            place:{
-                type:String,
-                required:true
-            },
-            district:{
-                type:String,
-                required:true
-            },
-            state:{
-                type:String,
-                required:true
-            },
+            
             pincode:{
                 type:Number,
                 required:true
