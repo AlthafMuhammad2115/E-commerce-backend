@@ -21,6 +21,10 @@ const productSchema=mongoose.Schema({
         required:true,
         type:Number
     },
+    imgName:{
+        required:true,
+        type:String
+    },
     imgUrl:{
         required:true,
         type:String
@@ -34,7 +38,6 @@ const productSchema=mongoose.Schema({
         type:String
     },
     trending:{
-        required:true,
         type:Boolean
     }
 },{

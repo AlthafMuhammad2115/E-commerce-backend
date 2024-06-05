@@ -10,10 +10,10 @@ const { default: mongoose } = require('mongoose');
 router.post('/setAddress/:userId',async (req,res)=>{
     try{
         const userId=req.params.userId;
-        const {firstname,lastname,number,email,housename,area,place,district,state,pincode}=req.body;
+        const {firstname,lastname,number,email,address,pincode}=req.body;
         let userAddress=await addressModel.findOne({userId:userId});
         if(userAddress){
-            userAddress.address.push({firstname,lastname,number,email,housename,area,place,district,state,pincode});
+            userAddress.address.push({firstname,lastname,number,email,address,pincode});
             await userAddress.save();
         }else{
             userAddress=await addressModel.create({
@@ -24,11 +24,7 @@ router.post('/setAddress/:userId',async (req,res)=>{
                         lastname,
                         number,
                         email,
-                        housename,
-                        area,
-                        place,
-                        district,
-                        state,
+                        address,
                         pincode
                     }
                 ]
@@ -44,20 +40,16 @@ router.post('/setAddress/:userId',async (req,res)=>{
 router.patch('/editAddress/:userId',async (req,res)=>{
     try{
         const userId=req.params.userId;
-        const {addressId,firstname,lastname,number,email,houseName,area,place,district,state,pincode}=req.body;
+        const {addressId,firstname,lastname,number,email,address,pincode}=req.body;
 
-        const address={
+        const Address={
             _id:addressId,
             id:addressId,
             firstname:firstname,
             lastname:lastname,
             number:number,
             email:email,
-            houseName:houseName,
-            area:area,
-            place:place,
-            district:district,
-            state:state,
+            address:address,
             pincode:pincode
         }
             
@@ -65,7 +57,7 @@ router.patch('/editAddress/:userId',async (req,res)=>{
             {
                 userId:userId,
                 address:{$elemMatch:{_id:addressId}}
-            },{$set:{address:address}});
+            },{$set:{address:Address}});
         res.send(userAddress)
     }catch(error){
         res.status(402).json({message:error.message});
